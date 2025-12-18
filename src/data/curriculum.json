@@ -1,0 +1,17 @@
+{
+    "title": "Curriculum",
+    "education": {
+        "title": "Education",
+        "degree": "BE Computer Science and Engineering",
+        "status": "(Pursuing)"
+    },
+    "interests": {
+        "title": "Interests",
+        "items": [
+            "Web Development",
+            "IoT",
+            "Hackathons",
+            "Problem Solving"
+        ]
+    }
+}

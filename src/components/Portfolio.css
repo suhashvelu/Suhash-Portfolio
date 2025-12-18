@@ -1,0 +1,32 @@
+/* Portfolio Custom Styles - Perfect Centering */
+
+/* Ensure all sections are centered */
+section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Center all text content by default */
+.section-container {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+/* Grid items should be centered */
+.grid-container {
+    display: grid;
+    justify-items: center;
+    align-items: center;
+}
+
+/* Bordered boxes should have centered content */
+.bordered-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}

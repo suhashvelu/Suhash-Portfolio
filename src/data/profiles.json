@@ -1,0 +1,17 @@
+{
+    "title": "Profiles",
+    "profiles": [
+        {
+            "name": "GitHub",
+            "url": "https://github.com/suhashvelusamy",
+            "subtitle": "View My Code",
+            "icon": "FaGithub"
+        },
+        {
+            "name": "LeetCode",
+            "url": "https://leetcode.com/suhashvelusamy",
+            "subtitle": "Problem Solving",
+            "icon": "SiLeetcode"
+        }
+    ]
+}

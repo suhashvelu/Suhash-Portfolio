@@ -1,0 +1,33 @@
+{
+    "title": "Tech Stack",
+    "skills": [
+        {
+            "name": "HTML",
+            "icon": "FaHtml5"
+        },
+        {
+            "name": "CSS",
+            "icon": "FaCss3Alt"
+        },
+        {
+            "name": "JavaScript",
+            "icon": "FaJs"
+        },
+        {
+            "name": "React",
+            "icon": "FaReact"
+        },
+        {
+            "name": "Tailwind",
+            "icon": "SiTailwindcss"
+        },
+        {
+            "name": "IoT",
+            "icon": "FaMicrochip"
+        },
+        {
+            "name": "GitHub",
+            "icon": "FaGithub"
+        }
+    ]
+}

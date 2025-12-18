@@ -1,1 +1,213 @@
+/* Clash Display Font */
+@font-face {
+    font-family: 'Clash Display';
+    src: url('/Fonts/ClashDisplay/ClashDisplay-Extralight.woff2') format('woff2'),
+        url('/Fonts/ClashDisplay/ClashDisplay-Extralight.woff') format('woff');
+    font-weight: 200;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Clash Display';
+    src: url('/Fonts/ClashDisplay/ClashDisplay-Light.woff2') format('woff2'),
+        url('/Fonts/ClashDisplay/ClashDisplay-Light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Clash Display';
+    src: url('/Fonts/ClashDisplay/ClashDisplay-Regular.woff2') format('woff2'),
+        url('/Fonts/ClashDisplay/ClashDisplay-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Clash Display';
+    src: url('/Fonts/ClashDisplay/ClashDisplay-Medium.woff2') format('woff2'),
+        url('/Fonts/ClashDisplay/ClashDisplay-Medium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Clash Display';
+    src: url('/Fonts/ClashDisplay/ClashDisplay-Semibold.woff2') format('woff2'),
+        url('/Fonts/ClashDisplay/ClashDisplay-Semibold.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Clash Display';
+    src: url('/Fonts/ClashDisplay/ClashDisplay-Bold.woff2') format('woff2'),
+        url('/Fonts/ClashDisplay/ClashDisplay-Bold.woff') format('woff');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Melodrama Font */
+@font-face {
+    font-family: 'Melodrama';
+    src: url('/Fonts/Melodrama/Melodrama-Light.woff2') format('woff2'),
+        url('/Fonts/Melodrama/Melodrama-Light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Melodrama';
+    src: url('/Fonts/Melodrama/Melodrama-Regular.woff2') format('woff2'),
+        url('/Fonts/Melodrama/Melodrama-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Melodrama';
+    src: url('/Fonts/Melodrama/Melodrama-Medium.woff2') format('woff2'),
+        url('/Fonts/Melodrama/Melodrama-Medium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Melodrama';
+    src: url('/Fonts/Melodrama/Melodrama-Semibold.woff2') format('woff2'),
+        url('/Fonts/Melodrama/Melodrama-Semibold.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Melodrama';
+    src: url('/Fonts/Melodrama/Melodrama-Bold.woff2') format('woff2'),
+        url('/Fonts/Melodrama/Melodrama-Bold.woff') format('woff');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
 @import "tailwindcss";
+
+* {
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+}
+
+body {
+    background-color: #FFFFFF;
+    color: #000000;
+    font-family: 'Clash Display', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-x: hidden;
+}
+
+#root {
+    width: 100%;
+    max-width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Melodrama', serif;
+}
+
+/* Ensure proper spacing between section headings and content */
+section h2 {
+    margin-bottom: 3rem !important;
+}
+
+section h3 {
+    margin-bottom: 1.5rem !important;
+}
+
+/* Add spacing within bordered boxes */
+.border {
+    padding: 2.5rem !important;
+}
+
+/* Portrait photo styling */
+.portrait-container {
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.portrait-container img {
+    filter: grayscale(100%) contrast(1.1);
+    transition: all 0.5s ease;
+}
+
+.portrait-container:hover img {
+    filter: grayscale(0%) contrast(1);
+}
+
+/* Marquee animation for tech stack */
+@keyframes marquee {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.animate-marquee {
+    animation: marquee 30s linear infinite;
+}
+
+.animate-marquee:hover {
+    animation-play-state: paused;
+}
+
+/* Slow marquee for background */
+.animate-marquee-slow {
+    animation: marquee 60s linear infinite;
+}
+
+/* Tech card entrance animation */
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(30px) scale(0.95);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.tech-card {
+    animation: fadeInUp 0.6s ease-out forwards;
+    opacity: 0;
+}
