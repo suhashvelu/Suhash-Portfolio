@@ -10,8 +10,8 @@ const Navbar = () => {
                 {/* Top Row - Logo, Title, Date */}
                 <div className="flex items-center justify-between py-3 border-b border-black">
                     {/* Logo/Icon Placeholder */}
-                    <div className="w-14 h-14 border-2 border-black flex items-center justify-center shrink-0">
-                        <span className="font-serif text-xl font-bold text-black">SV</span>
+                    <div className="w-14 h-14 flex items-center justify-center shrink-0">
+                        <img src="/Logo/s3v.png" alt="SV Logo" className="w-full h-full object-contain" />
                     </div>
 
                     {/* Center Title */}

@@ -6,36 +6,49 @@ import profilesData from '../data/profiles.json';
 const GITHUB_USERNAME = 'suhashvelusamy';
 const LEETCODE_USERNAME = 'SUHASH_03';
 
-const Profiles = () => {
-    const [githubData, setGithubData] = useState({ repos: [], stats: null });
-    const [leetcodeStats, setLeetcodeStats] = useState(null);
+const Profiles = ({ githubData: propGithubData, leetcodeStats: propLeetcodeStats }) => {
+    const [localGithubData, setLocalGithubData] = useState({ repos: [], stats: null });
+    const [localLeetcodeStats, setLocalLeetcodeStats] = useState(null);
     const [loading, setLoading] = useState({ github: true, leetcode: true });
 
-    useEffect(() => {
-        Promise.all([
-            fetch(`https://api.github.com/users/${GITHUB_USERNAME}/repos?per_page=100`).then(r => r.json()),
-            fetch(`https://api.github.com/users/${GITHUB_USERNAME}`).then(r => r.json())
-        ])
-            .then(([repos, user]) => {
-                const topRepos = repos
-                    .sort((a, b) => b.stargazers_count - a.stargazers_count)
-                    .slice(0, 3);
-                setGithubData({ repos: topRepos, stats: user });
-                setLoading(p => ({ ...p, github: false }));
-            })
-            .catch(() => setLoading(p => ({ ...p, github: false })));
+    // Use props if available, otherwise local state
+    const githubData = propGithubData || localGithubData;
+    const leetcodeStats = propLeetcodeStats || localLeetcodeStats;
+    const isLoading = {
+        github: propGithubData ? false : loading.github,
+        leetcode: propLeetcodeStats ? false : loading.leetcode
+    };
 
-        fetch(`https://leetcode-stats-api.herokuapp.com/${LEETCODE_USERNAME}`)
-            .then(r => r.json())
-            .then(data => {
-                setLeetcodeStats({
-                    totalSolved: data.totalSolved || 0,
-                    ranking: data.ranking || 'N/A'
-                });
-                setLoading(p => ({ ...p, leetcode: false }));
-            })
-            .catch(() => setLoading(p => ({ ...p, leetcode: false })));
-    }, []);
+    useEffect(() => {
+        // Only fetch if props are NOT provided
+        if (!propGithubData) {
+            Promise.all([
+                fetch(`https://api.github.com/users/${GITHUB_USERNAME}/repos?per_page=100`).then(r => r.json()),
+                fetch(`https://api.github.com/users/${GITHUB_USERNAME}`).then(r => r.json())
+            ])
+                .then(([repos, user]) => {
+                    const topRepos = repos
+                        .sort((a, b) => b.stargazers_count - a.stargazers_count)
+                        .slice(0, 3);
+                    setLocalGithubData({ repos: topRepos, stats: user });
+                    setLoading(p => ({ ...p, github: false }));
+                })
+                .catch(() => setLoading(p => ({ ...p, github: false })));
+        }
+
+        if (!propLeetcodeStats) {
+            fetch(`https://leetcode-stats-api.herokuapp.com/${LEETCODE_USERNAME}`)
+                .then(r => r.json())
+                .then(data => {
+                    setLocalLeetcodeStats({
+                        totalSolved: data.totalSolved || 0,
+                        ranking: data.ranking || 'N/A'
+                    });
+                    setLoading(p => ({ ...p, leetcode: false }));
+                })
+                .catch(() => setLoading(p => ({ ...p, leetcode: false })));
+        }
+    }, [propGithubData, propLeetcodeStats]);
 
     return (
         <section
@@ -77,7 +90,7 @@ const Profiles = () => {
                                 </a>
                             </div>
 
-                            {!loading.github && githubData.stats && (
+                            {!isLoading.github && githubData.stats && (
                                 <div className="grid grid-cols-3 gap-3 mt-3">
                                     {[
                                         ['Repos', githubData.stats.public_repos],
@@ -155,7 +168,7 @@ const Profiles = () => {
                                 </a>
                             </div>
 
-                            {!loading.leetcode && leetcodeStats && (
+                            {!isLoading.leetcode && leetcodeStats && (
                                 <>
                                     <div className="grid grid-cols-2 gap-3 mt-3">
                                         <div className="border-2 border-black p-3 text-center">
