@@ -6,107 +6,120 @@ const Navbar = () => {
 
     return (
         <nav className="w-full bg-white border-b-2 border-black sticky top-0 z-50">
-            <div className="w-full px-6 lg:px-12">
+            <div className="w-full px-6 lg:px-12 max-w-[1600px] mx-auto">
                 {/* Top Row - Logo, Title, Date */}
-                <div className="flex items-center justify-between py-4 border-b border-black">
+                <div className="flex items-center justify-between py-3 border-b border-black">
                     {/* Logo/Icon Placeholder */}
-                    <div className="w-16 h-16 border-2 border-black flex items-center justify-center">
-                        <span className="font-serif text-2xl font-bold">SV</span>
+                    <div className="w-14 h-14 border-2 border-black flex items-center justify-center shrink-0">
+                        <span className="font-serif text-xl font-bold text-black">SV</span>
                     </div>
 
                     {/* Center Title */}
-                    <h1 className="font-serif text-2xl md:text-3xl font-bold text-center">
+                    <h1 className="font-serif text-2xl md:text-4xl font-bold text-center text-black flex-grow">
                         Portfolio
                     </h1>
 
                     {/* Date */}
-                    <div className="text-sm text-right hidden md:block">
+                    <div className="text-sm text-right hidden md:block min-w-[120px] shrink-0 text-black">
                         {new Date().toLocaleDateString('en-US', {
-                            weekday: 'long',
-                            day: 'numeric',
-                            month: 'long',
-                            year: 'numeric'
+                            weekday: 'short',
+                            month: 'short',
+                            day: 'numeric'
                         })}
                     </div>
                 </div>
 
                 {/* Bottom Row - Navigation Links and Social Icons */}
-                <div className="flex items-center justify-between py-4">
+                <div className="flex items-center justify-between py-3">
                     {/* Navigation Links */}
-                    <div className="hidden md:flex gap-8 text-sm uppercase tracking-wider font-medium">
-                        <a href="#hero" className="hover:underline transition-all">
+                    <div className="flex gap-4 lg:gap-8 text-sm lg:text-base uppercase tracking-wider font-semibold text-black overflow-x-auto no-scrollbar">
+                        <a href="#hero" className="hover:underline transition-all whitespace-nowrap">
                             About Me
                         </a>
-                        <a href="#projects" className="hover:underline transition-all">
+                        <a href="#projects" className="hover:underline transition-all whitespace-nowrap">
                             Projects
                         </a>
-                        <a href="#tech" className="hover:underline transition-all">
+                        <a href="#tech" className="hover:underline transition-all whitespace-nowrap">
                             Tech Stack
                         </a>
-                        <a href="#profiles" className="hover:underline transition-all">
+                        <a href="#profiles" className="hover:underline transition-all whitespace-nowrap">
                             Profiles
                         </a>
-                        <a href="#contact" className="hover:underline transition-all">
+                        <a href="#contact" className="hover:underline transition-all whitespace-nowrap">
                             Contact
                         </a>
                     </div>
 
-                    {/* Mobile Menu Button */}
-                    <button
-                        className="md:hidden text-2xl"
-                        onClick={() => setIsOpen(!isOpen)}
-                    >
-                        ☰
-                    </button>
-
                     {/* Social Icons */}
-                    <div className="flex gap-4 text-xl">
+                    <div className="hidden md:flex gap-4 text-black items-center">
                         <a
                             href="https://twitter.com"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="hover:scale-110 transition-transform"
+                            className="hover:scale-110 transition-transform text-black"
+                            aria-label="Twitter"
                         >
-                            <FaTwitter />
+                            <FaTwitter size={24} />
                         </a>
                         <a
                             href="https://linkedin.com"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="hover:scale-110 transition-transform"
+                            className="hover:scale-110 transition-transform text-black"
+                            aria-label="LinkedIn"
                         >
-                            <FaLinkedin />
+                            <FaLinkedin size={24} />
                         </a>
                         <a
                             href="https://github.com/suhashvelusamy"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="hover:scale-110 transition-transform"
+                            className="hover:scale-110 transition-transform text-black"
+                            aria-label="GitHub"
                         >
-                            <FaGithub />
+                            <FaGithub size={24} />
                         </a>
                     </div>
+
+                    {/* Mobile Menu Button (Hamburger) */}
+                    <button
+                        className="md:hidden text-black focus:outline-none ml-4"
+                        onClick={() => setIsOpen(!isOpen)}
+                    >
+                        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            {isOpen ? (
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                            ) : (
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                            )}
+                        </svg>
+                    </button>
                 </div>
 
                 {/* Mobile Menu */}
                 {isOpen && (
-                    <div className="md:hidden py-4 border-t border-black">
-                        <div className="flex flex-col gap-4 text-sm uppercase tracking-wider font-medium">
-                            <a href="#hero" className="hover:underline" onClick={() => setIsOpen(false)}>
+                    <div className="md:hidden py-4 border-t border-black animate-fadeIn">
+                        <div className="flex flex-col gap-4 text-sm uppercase tracking-wider font-medium text-black text-center">
+                            <a href="#hero" className="hover:underline py-2" onClick={() => setIsOpen(false)}>
                                 About Me
                             </a>
-                            <a href="#projects" className="hover:underline" onClick={() => setIsOpen(false)}>
+                            <a href="#projects" className="hover:underline py-2" onClick={() => setIsOpen(false)}>
                                 Projects
                             </a>
-                            <a href="#tech" className="hover:underline" onClick={() => setIsOpen(false)}>
+                            <a href="#tech" className="hover:underline py-2" onClick={() => setIsOpen(false)}>
                                 Tech Stack
                             </a>
-                            <a href="#profiles" className="hover:underline" onClick={() => setIsOpen(false)}>
+                            <a href="#profiles" className="hover:underline py-2" onClick={() => setIsOpen(false)}>
                                 Profiles
                             </a>
-                            <a href="#contact" className="hover:underline" onClick={() => setIsOpen(false)}>
+                            <a href="#contact" className="hover:underline py-2" onClick={() => setIsOpen(false)}>
                                 Contact
                             </a>
+                            <div className="flex justify-center gap-6 mt-4 pt-4 border-t border-gray-200">
+                                <a href="https://twitter.com" target="_blank" rel="noopener" className="text-black"><FaTwitter size={24} /></a>
+                                <a href="https://linkedin.com" target="_blank" rel="noopener" className="text-black"><FaLinkedin size={24} /></a>
+                                <a href="https://github.com/suhashvelusamy" target="_blank" rel="noopener" className="text-black"><FaGithub size={24} /></a>
+                            </div>
                         </div>
                     </div>
                 )}

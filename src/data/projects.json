@@ -5,25 +5,29 @@
             "id": 1,
             "title": "Smart CO Detection System",
             "description": "IoT-based carbon monoxide detection and alert system for safety monitoring.",
-            "category": "IoT Project"
+            "category": "IoT Project",
+            "image": ""
         },
         {
             "id": 2,
             "title": "LEACS+ Disaster Alert System",
             "description": "Advanced disaster alert and communication system for emergency response.",
-            "category": "Hackathon Project"
+            "category": "Hackathon Project",
+            "image": ""
         },
         {
             "id": 3,
             "title": "Portfolio Website",
             "description": "Black & white editorial-style portfolio built with React and Tailwind CSS.",
-            "category": "Web Development"
+            "category": "Web Development",
+            "image": ""
         },
         {
             "id": 4,
             "title": "Hackathon Projects",
             "description": "Various innovative solutions developed during competitive hackathon events.",
-            "category": "Innovation"
+            "category": "Innovation",
+            "image": ""
         }
     ]
 }

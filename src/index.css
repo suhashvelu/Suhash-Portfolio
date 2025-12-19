@@ -117,19 +117,14 @@ body {
     font-family: 'Clash Display', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    /* Removed potentially dangerous flex centering */
     overflow-x: hidden;
 }
 
 #root {
     width: 100%;
-    max-width: 100vw;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    overflow-x: hidden;
+    /* Removed flex centering to prevent width collapsing */
+    isolation: isolate;
 }
 
 h1,
@@ -148,11 +143,6 @@ section h2 {
 
 section h3 {
     margin-bottom: 1.5rem !important;
-}
-
-/* Add spacing within bordered boxes */
-.border {
-    padding: 2.5rem !important;
 }
 
 /* Portrait photo styling */
