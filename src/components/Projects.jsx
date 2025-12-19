@@ -65,39 +65,78 @@ const Projects = () => {
                                         {/* Inner border */}
                                         <div className="border-2 border-black h-full flex flex-col">
                                             {/* Image Placeholder */}
-                                            <div className="aspect-[4/3] bg-gray-100 border-b-2 border-black flex items-center justify-center overflow-hidden">
-                                                <div className="text-center p-8">
-                                                    <div
-                                                        className="text-9xl font-bold opacity-10"
-                                                        style={{ fontFamily: "'Clash Display', sans-serif" }}
-                                                    >
-                                                        {project.id}
+                                            <div className="aspect-[4/3] bg-gray-100 border-b-2 border-black flex items-center justify-center overflow-hidden relative group">
+                                                {project.image ? (
+                                                    <img
+                                                        src={project.image}
+                                                        alt={project.title}
+                                                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                                                    />
+                                                ) : (
+                                                    <div className="text-center p-8">
+                                                        <div
+                                                            className="text-9xl font-bold opacity-10"
+                                                            style={{ fontFamily: "'Clash Display', sans-serif" }}
+                                                        >
+                                                            {project.id}
+                                                        </div>
                                                     </div>
-                                                </div>
+                                                )}
                                             </div>
 
                                             {/* Project Info */}
-                                            <div className="p-6 bg-white flex-grow flex flex-col justify-between">
-                                                <h3
-                                                    className="text-xl font-bold mb-3 leading-tight"
-                                                    style={{ fontFamily: "'Clash Display', sans-serif" }}
-                                                >
-                                                    {project.title}
-                                                </h3>
-
-                                                <div className="flex items-center justify-between mt-4">
-                                                    <p
-                                                        className="text-xs uppercase tracking-wider opacity-60"
+                                            <div className="p-6 bg-white flex-grow flex flex-col justify-between h-[300px]">
+                                                <div>
+                                                    <h3
+                                                        className="text-xl font-bold mb-3 leading-tight line-clamp-2"
                                                         style={{ fontFamily: "'Clash Display', sans-serif" }}
                                                     >
-                                                        {project.category}
+                                                        {project.title}
+                                                    </h3>
+                                                    <p className="text-sm opacity-80 mb-4 line-clamp-3">
+                                                        {project.description}
                                                     </p>
-                                                    <span
-                                                        className="text-sm font-medium hover:underline cursor-pointer"
-                                                        style={{ fontFamily: "'Clash Display', sans-serif" }}
-                                                    >
-                                                        Read
-                                                    </span>
+
+                                                    {project.techStack && (
+                                                        <div className="mb-4">
+                                                            <p className="text-xs font-bold uppercase tracking-wider mb-1">Tech Stack:</p>
+                                                            <p className="text-xs opacity-70 italic line-clamp-2">{project.techStack}</p>
+                                                        </div>
+                                                    )}
+                                                </div>
+
+                                                <div className="flex flex-col gap-4 mt-auto">
+                                                    <div className="flex items-center justify-between">
+                                                        <p
+                                                            className="text-xs uppercase tracking-wider opacity-60"
+                                                            style={{ fontFamily: "'Clash Display', sans-serif" }}
+                                                        >
+                                                            {project.category}
+                                                        </p>
+                                                    </div>
+
+                                                    <div className="flex gap-3">
+                                                        {project.githubLink && project.githubLink !== '#' && (
+                                                            <a
+                                                                href={project.githubLink}
+                                                                target="_blank"
+                                                                rel="noopener noreferrer"
+                                                                className="flex-1 bg-black text-white text-center py-2 text-sm font-bold uppercase tracking-wider hover:bg-black/80 transition-colors"
+                                                            >
+                                                                GitHub
+                                                            </a>
+                                                        )}
+                                                        {project.demoLink && project.demoLink !== '#' && (
+                                                            <a
+                                                                href={project.demoLink}
+                                                                target="_blank"
+                                                                rel="noopener noreferrer"
+                                                                className="flex-1 border-2 border-black text-black text-center py-2 text-sm font-bold uppercase tracking-wider hover:bg-black hover:text-white transition-colors"
+                                                            >
+                                                                Demo
+                                                            </a>
+                                                        )}
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>

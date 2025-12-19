@@ -5,9 +5,32 @@ import { FaDownload, FaEye } from 'react-icons/fa';
 
 const Resume = () => {
     const [showPreview, setShowPreview] = useState(false);
+    const [selectedCertImage, setSelectedCertImage] = useState(null);
 
     return (
-        <section id="resume" className="w-full bg-white text-black border-t border-black px-6 lg:px-12 py-16 lg:py-24">
+        <section id="resume" className="w-full bg-white text-black border-t border-black px-6 lg:px-12 py-16 lg:py-24 relative">
+            {/* Certificate Image Modal */}
+            {selectedCertImage && (
+                <div
+                    className="fixed inset-0 z-[100] bg-black/80 flex items-center justify-center p-4 cursor-pointer animate-fadeIn"
+                    onClick={() => setSelectedCertImage(null)}
+                >
+                    <div className="relative max-w-4xl w-full max-h-[90vh]">
+                        <img
+                            src={selectedCertImage}
+                            alt="Certificate Preview"
+                            className="w-full h-full object-contain border-2 border-white"
+                        />
+                        <button
+                            className="absolute -top-12 right-0 text-white font-serif text-xl hover:underline"
+                            onClick={() => setSelectedCertImage(null)}
+                        >
+                            CLOSE [X]
+                        </button>
+                    </div>
+                </div>
+            )}
+
             <div className="flex flex-col lg:flex-row gap-16 lg:gap-24">
 
                 {/* Left Column: Header & Actions */}
@@ -72,10 +95,17 @@ const Resume = () => {
                         </h3>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                             {certificationsData.certifications.map((cert) => (
-                                <div key={cert.id} className="border border-black p-6 hover:bg-black hover:text-white transition-colors duration-300 group cursor-pointer">
-                                    <h4 className="text-xl md:text-2xl font-bold font-serif mb-2">{cert.name}</h4>
+                                <div
+                                    key={cert.id}
+                                    className={`border border-black p-6 transition-colors duration-300 group ${cert.image ? 'cursor-pointer hover:bg-black hover:text-white' : 'cursor-default'}`}
+                                    onClick={() => cert.image && setSelectedCertImage(cert.image)}
+                                >
+                                    <h4 className="text-xl md:text-2xl font-bold font-serif mb-2 flex items-center gap-2">
+                                        {cert.name}
+                                        {cert.image && <FaEye className="text-sm opacity-50" />}
+                                    </h4>
                                     <div className="flex justify-between items-end">
-                                        <p className="opacity-60 text-sm group-hover:opacity-80">{cert.issuer}</p>
+                                        <p className={`opacity-60 text-sm ${cert.image ? 'group-hover:opacity-80' : ''}`}>{cert.issuer}</p>
                                         <span className="text-sm font-medium">{cert.year}</span>
                                     </div>
                                 </div>

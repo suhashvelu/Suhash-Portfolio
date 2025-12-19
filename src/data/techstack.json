@@ -28,6 +28,46 @@
         {
             "name": "GitHub",
             "icon": "FaGithub"
+        },
+        {
+            "name": "Blender",
+            "icon": "SiBlender"
+        },
+        {
+            "name": "Illustrator",
+            "icon": "SiAdobeillustrator"
+        },
+        {
+            "name": "Photoshop",
+            "icon": "SiAdobephotoshop"
+        },
+        {
+            "name": "Figma",
+            "icon": "SiFigma"
+        },
+        {
+            "name": "VS Code",
+            "icon": "VscVscode"
+        },
+        {
+            "name": "Node.js",
+            "icon": "FaNodeJs"
+        },
+        {
+            "name": "Python",
+            "icon": "FaPython"
+        },
+        {
+            "name": "C",
+            "icon": "SiC"
+        },
+        {
+            "name": "C++",
+            "icon": "SiCplusplus"
+        },
+        {
+            "name": "Linux",
+            "icon": "FaLinux"
         }
     ]
 }

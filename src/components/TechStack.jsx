@@ -1,6 +1,7 @@
 import { useRef, useState, useEffect } from 'react';
-import { FaHtml5, FaCss3Alt, FaJs, FaReact, FaGithub, FaMicrochip } from 'react-icons/fa';
-import { SiTailwindcss } from 'react-icons/si';
+import { FaHtml5, FaCss3Alt, FaJs, FaReact, FaGithub, FaMicrochip, FaNodeJs, FaPython, FaLinux } from 'react-icons/fa';
+import { SiTailwindcss, SiBlender, SiAdobeillustrator, SiAdobephotoshop, SiFigma, SiC, SiCplusplus } from 'react-icons/si';
+import { VscVscode } from 'react-icons/vsc';
 import techStackData from '../data/techstack.json';
 
 // Icon mapping
@@ -11,7 +12,17 @@ const iconMap = {
     FaReact,
     SiTailwindcss,
     FaMicrochip,
-    FaGithub
+    FaGithub,
+    SiBlender,
+    SiAdobeillustrator,
+    SiAdobephotoshop,
+    SiFigma,
+    VscVscode,
+    FaNodeJs,
+    FaPython,
+    SiC,
+    SiCplusplus,
+    FaLinux
 };
 
 const TechStack = () => {
