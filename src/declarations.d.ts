@@ -42,3 +42,13 @@ declare module './components/Loader' {
     const Loader: React.FC;
     export default Loader;
 }
+
+declare module './components/SocialStrip' {
+    const SocialStrip: React.FC;
+    export default SocialStrip;
+}
+
+declare module './components/Resume' {
+    const Resume: React.FC;
+    export default Resume;
+}

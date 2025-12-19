@@ -1,0 +1,19 @@
+{
+    "title": "Education",
+    "education": [
+        {
+            "id": 1,
+            "degree": "B.E. Computer Science and Engineering",
+            "institution": "Kongu Engineering College",
+            "year": "2023 - 2027",
+            "details": "Specializing in software development and IoT systems."
+        },
+        {
+            "id": 2,
+            "degree": "Higher Secondary",
+            "institution": "Kongu Vellalar Matric Higher Secondary School",
+            "year": "2021 - 2023",
+            "details": "Specialized in Mathematics and Computer Science."
+        }
+    ]
+}

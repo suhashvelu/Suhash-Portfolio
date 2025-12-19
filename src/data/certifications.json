@@ -1,0 +1,19 @@
+{
+    "title": "Certifications",
+    "certifications": [
+        {
+            "id": 1,
+            "name": "Azure AI-102",
+            "issuer": "Microsoft",
+            "year": "2024",
+            "link": "#"
+        },
+        {
+            "id": 2,
+            "name": "Oracle APEX Cloud Developer",
+            "issuer": "Oracle",
+            "year": "2025",
+            "link": "#"
+        }
+    ]
+}

@@ -47,11 +47,11 @@ const Hero = () => {
                 {/* Three Column Layout - Images and Title */}
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-0">
                     {/* Left Image */}
-                    <div className="aspect-[5/3] bg-gray-200 border-r-0 lg:border-r-2 border-black overflow-hidden">
+                    <div className="aspect-[5/3] bg-gray-200 border-r-0 lg:border-r-2 border-black overflow-hidden relative group">
                         <img
-                            src="/left-image.jpg"
+                            src="/portrait/picture2.jpg"
                             alt="Portfolio Image 1"
-                            className="w-full h-full object-cover grayscale"
+                            className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
                             onError={(e) => {
                                 e.target.style.display = 'none';
                                 e.target.parentElement.style.background = '#e5e5e5';

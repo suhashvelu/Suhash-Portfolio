@@ -8,6 +8,8 @@ import Profiles from './components/Profiles';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import Loader from './components/Loader';
+import SocialStrip from './components/SocialStrip';
+import Resume from './components/Resume';
 
 const GITHUB_USERNAME = 'suhashvelusamy';
 const LEETCODE_USERNAME = 'SUHASH_03';
@@ -124,10 +126,12 @@ function App() {
         <div className="bg-white text-black min-h-screen w-[92%] max-w-[1600px] mx-auto relative animate-fadeIn">
             <Navbar />
             <Hero />
+            <Resume />
             <TechStack />
             <Projects />
             <Profiles githubData={githubData} leetcodeStats={leetcodeStats} />
             <Contact />
+            <SocialStrip />
             <Footer />
         </div>
     );

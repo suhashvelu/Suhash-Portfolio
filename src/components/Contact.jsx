@@ -22,66 +22,68 @@ const Contact = () => {
         setFormData({ name: '', email: '', message: '' });
     };
 
+    // Input classes
+    const inputClasses = "w-full bg-transparent border-b border-black py-4 text-xl md:text-2xl focus:outline-none placeholder:text-black/40 font-serif transition-colors focus:border-black/60";
+
     return (
-        <section
-            id="contact"
-            className="w-full px-6 lg:px-12 py-12 bg-white text-black border-t border-black flex justify-center"
-        >
-            <div className="max-w-4xl w-full">
-                <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold mb-10 text-center">
-                    CONTACT ME
-                </h2>
-
-                <form onSubmit={handleSubmit} className="space-y-10">
-                    {/* Name Input */}
-                    <div className="relative">
-                        <input
-                            type="text"
-                            name="name"
-                            value={formData.name}
-                            onChange={handleChange}
-                            required
-                            placeholder="YOUR NAME"
-                            className="w-full bg-transparent border-b-2 border-black py-4 text-lg focus:outline-none placeholder:text-black placeholder:opacity-40"
-                        />
+        <section id="contact" className="w-full bg-white text-black border-t border-black">
+            <div className="w-full px-6 lg:px-12 py-16 lg:py-24">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
+                    {/* Left Column: Huge Text */}
+                    <div className="flex flex-col justify-start">
+                        <h2 className="font-serif text-6xl md:text-8xl lg:text-9xl font-normal leading-[0.9] tracking-tight">
+                            LET'S<br />WORK<br />TOGETHER
+                        </h2>
                     </div>
 
-                    {/* Email Input */}
-                    <div className="relative">
-                        <input
-                            type="email"
-                            name="email"
-                            value={formData.email}
-                            onChange={handleChange}
-                            required
-                            placeholder="YOUR EMAIL"
-                            className="w-full bg-transparent border-b-2 border-black py-4 text-lg focus:outline-none placeholder:text-black placeholder:opacity-40"
-                        />
-                    </div>
+                    {/* Right Column: Form */}
+                    <div className="w-full lg:pt-4">
+                        <form onSubmit={handleSubmit} className="space-y-12">
+                            <div>
+                                <input
+                                    type="text"
+                                    name="name"
+                                    value={formData.name}
+                                    onChange={handleChange}
+                                    required
+                                    placeholder="Your Name"
+                                    className={inputClasses}
+                                />
+                            </div>
+                            <div>
+                                <input
+                                    type="email"
+                                    name="email"
+                                    value={formData.email}
+                                    onChange={handleChange}
+                                    required
+                                    placeholder="Your Email"
+                                    className={inputClasses}
+                                />
+                            </div>
+                            <div>
+                                <textarea
+                                    name="message"
+                                    value={formData.message}
+                                    onChange={handleChange}
+                                    required
+                                    placeholder="Tell me about your project..."
+                                    rows="4"
+                                    className={`${inputClasses} resize-none`}
+                                />
+                            </div>
 
-                    {/* Message Input */}
-                    <div className="relative">
-                        <textarea
-                            name="message"
-                            value={formData.message}
-                            onChange={handleChange}
-                            required
-                            placeholder="YOUR MESSAGE"
-                            rows="6"
-                            className="w-full bg-transparent border-b-2 border-black py-4 text-lg focus:outline-none resize-none placeholder:text-black placeholder:opacity-40"
-                        />
+                            <div className="pt-8 flex justify-start">
+                                <button
+                                    type="submit"
+                                    className="group relative overflow-hidden rounded-full border-2 border-black px-12 py-4 text-lg font-bold uppercase tracking-widest hover:bg-black hover:text-white transition-all duration-500"
+                                >
+                                    <span className="relative z-10">Send Message</span>
+                                </button>
+                            </div>
+                        </form>
                     </div>
-
-                    {/* Submit Button */}
-                    <div className="text-center">
-                        <button
-                            type="submit"
-                            className="border-2 border-black px-12 py-4 text-lg uppercase tracking-widest font-semibold hover:bg-black hover:text-white transition-all duration-300"
-                        >
-                            Send Message
-                        </button>
-                    </div>
-                </form>
+                </div>
             </div>
         </section>
     );
