@@ -36,7 +36,7 @@ const Hero = () => {
             ref={heroRef}
             className="w-full bg-white text-black flex justify-center border-b-2 border-black"
         >
-            <div className="w-full max-w-[1600px] mx-auto">
+            <div className="w-full">
                 {/* Large Name Banner - Black Background */}
                 <div ref={nameRef} className="bg-black text-white py-1 lg:py-2 px-6 lg:px-12">
                     <h1 className="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold text-center leading-none tracking-tight whitespace-nowrap overflow-hidden">

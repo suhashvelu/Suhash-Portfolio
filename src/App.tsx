@@ -8,7 +8,7 @@ import Footer from './components/Footer';
 
 function App() {
     return (
-        <div className="bg-white text-black">
+        <div className="bg-white text-black min-h-screen w-[92%] max-w-[1600px] mx-auto relative">
             <Navbar />
             <Hero />
             <TechStack />

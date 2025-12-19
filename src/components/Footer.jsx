@@ -2,7 +2,7 @@ import { FaRegHeart } from 'react-icons/fa';
 
 const Footer = () => {
     return (
-        <footer className="w-full bg-[#f4f4f5] text-black pt-1 px-6 pb-8 border-t-0">
+        <footer className="w-full text-black pt-1 px-6 pb-8 border-t-0">
             {/* Triple Line Effect */}
             <div className="flex flex-col gap-[3px] mb-8 w-full">
                 <div className="h-[2px] w-full bg-black"></div>
@@ -10,7 +10,7 @@ const Footer = () => {
                 <div className="h-[2px] w-full bg-black"></div>
             </div>
 
-            <div className="max-w-7xl mx-auto flex items-center justify-between">
+            <div className="w-full flex items-center justify-between">
                 {/* Colored Dots */}
                 <div className="flex items-center gap-3">
                     <div className="w-5 h-5 rounded-full bg-[#3b82f6]"></div> {/* Blue */}

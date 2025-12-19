@@ -48,7 +48,7 @@ const TechStack = () => {
                                                 {skill.name}
                                             </span>
                                         </div>
-                                        <span className="text-4xl ml-32">•</span>
+                                        <span className="text-4xl px-16">•</span>
                                     </div>
                                 );
                             })}

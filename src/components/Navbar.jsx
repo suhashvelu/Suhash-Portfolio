@@ -6,7 +6,7 @@ const Navbar = () => {
 
     return (
         <nav className="w-full bg-white border-b-2 border-black sticky top-0 z-50">
-            <div className="w-full px-6 lg:px-12 max-w-[1600px] mx-auto">
+            <div className="w-full px-6 lg:px-12 h-full">
                 {/* Top Row - Logo, Title, Date */}
                 <div className="flex items-center justify-between py-3 border-b border-black">
                     {/* Logo/Icon Placeholder */}
@@ -33,9 +33,6 @@ const Navbar = () => {
                 <div className="flex items-center justify-between py-3">
                     {/* Navigation Links */}
                     <div className="flex gap-4 lg:gap-8 text-sm lg:text-base uppercase tracking-wider font-semibold text-black overflow-x-auto no-scrollbar">
-                        <a href="#hero" className="hover:underline transition-all whitespace-nowrap">
-                            About Me
-                        </a>
                         <a href="#projects" className="hover:underline transition-all whitespace-nowrap">
                             Projects
                         </a>
@@ -100,9 +97,6 @@ const Navbar = () => {
                 {isOpen && (
                     <div className="md:hidden py-4 border-t border-black animate-fadeIn">
                         <div className="flex flex-col gap-4 text-sm uppercase tracking-wider font-medium text-black text-center">
-                            <a href="#hero" className="hover:underline py-2" onClick={() => setIsOpen(false)}>
-                                About Me
-                            </a>
                             <a href="#projects" className="hover:underline py-2" onClick={() => setIsOpen(false)}>
                                 Projects
                             </a>

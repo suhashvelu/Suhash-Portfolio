@@ -123,8 +123,10 @@ body {
 
 #root {
     width: 100%;
-    /* Removed flex centering to prevent width collapsing */
-    isolation: isolate;
+    /* Use flex centering to strictly enforce equal margins */
+    display: flex;
+    justify-content: center;
+    /* isolation: isolate; */
 }
 
 h1,
