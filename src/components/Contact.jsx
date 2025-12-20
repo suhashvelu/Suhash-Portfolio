@@ -14,12 +14,37 @@ const Contact = () => {
         });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        // Form submission logic would go here
-        console.log('Form submitted:', formData);
-        alert('Thank you for your message! This is a demo form.');
-        setFormData({ name: '', email: '', message: '' });
+        try {
+            const response = await fetch('http://localhost:5000/api/contact', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                console.error('Contact form error:', data);
+                alert(data.error || 'Something went wrong. Please try again.');
+                return;
+            }
+
+            // Store JWT token locally (one per user/email)
+            if (data.token && data.email) {
+                localStorage.setItem('contact_token', data.token);
+                localStorage.setItem('contact_email', data.email);
+            }
+
+            alert('Thank you for your message! Your details have been securely saved.');
+            setFormData({ name: '', email: '', message: '' });
+        } catch (error) {
+            console.error('Network error while sending contact form:', error);
+            alert('Unable to send message right now. Please try again later.');
+        }
     };
 
     // Input classes

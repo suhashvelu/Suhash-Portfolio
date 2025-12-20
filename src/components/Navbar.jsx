@@ -67,7 +67,7 @@ const Navbar = () => {
                     {/* Social Icons */}
                     <div className="hidden md:flex gap-4 text-black items-center">
                         <a
-                            href="https://twitter.com"
+                            href="https://x.com/Su_hash1947"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="hover:scale-110 transition-transform text-black"
@@ -76,7 +76,7 @@ const Navbar = () => {
                             <FaTwitter size={24} />
                         </a>
                         <a
-                            href="https://linkedin.com"
+                            href="www.linkedin.com/in/suhash-velusamy"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="hover:scale-110 transition-transform text-black"
@@ -85,7 +85,7 @@ const Navbar = () => {
                             <FaLinkedin size={24} />
                         </a>
                         <a
-                            href="https://github.com/suhashvelusamy"
+                            href="https://github.com/SUHASHVELU"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="hover:scale-110 transition-transform text-black"
@@ -94,7 +94,7 @@ const Navbar = () => {
                             <FaGithub size={24} />
                         </a>
                         <a
-                            href="https://instagram.com"
+                            href="https://www.instagram.com/suhash_velu_/?__pwa=1#"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="hover:scale-110 transition-transform text-black"
@@ -127,10 +127,10 @@ const Navbar = () => {
                                 Contact
                             </a>
                             <div className="flex justify-center gap-6 mt-4 pt-4 border-t border-gray-200">
-                                <a href="https://twitter.com" target="_blank" rel="noopener" className="text-black"><FaTwitter size={24} /></a>
-                                <a href="https://linkedin.com" target="_blank" rel="noopener" className="text-black"><FaLinkedin size={24} /></a>
-                                <a href="https://github.com/suhashvelusamy" target="_blank" rel="noopener" className="text-black"><FaGithub size={24} /></a>
-                                <a href="https://instagram.com" target="_blank" rel="noopener" className="text-black"><FaInstagram size={24} /></a>
+                                <a href="https://x.com/Su_hash1947" target="_blank" rel="noopener" className="text-black"><FaTwitter size={24} /></a>
+                                <a href="www.linkedin.com/in/suhash-velusamy" target="_blank" rel="noopener" className="text-black"><FaLinkedin size={24} /></a>
+                                <a href="https://github.com/SUHASHVELU" target="_blank" rel="noopener" className="text-black"><FaGithub size={24} /></a>
+                                <a href="https://www.instagram.com/suhash_velu_/?__pwa=1#" target="_blank" rel="noopener" className="text-black"><FaInstagram size={24} /></a>
                             </div>
                         </div>
                     </div>

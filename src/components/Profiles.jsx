@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
-import { FaGithub } from 'react-icons/fa';
+import { FaGithub, FaStar } from 'react-icons/fa';
 import { SiLeetcode } from 'react-icons/si';
 import profilesData from '../data/profiles.json';
 
-const GITHUB_USERNAME = 'suhashvelusamy';
+const GITHUB_USERNAME = 'SUHASHVELU';
 const LEETCODE_USERNAME = 'SUHASH_03';
 
 const Profiles = ({ githubData: propGithubData, leetcodeStats: propLeetcodeStats }) => {
@@ -29,7 +29,7 @@ const Profiles = ({ githubData: propGithubData, leetcodeStats: propLeetcodeStats
                 .then(([repos, user]) => {
                     const topRepos = repos
                         .sort((a, b) => b.stargazers_count - a.stargazers_count)
-                        .slice(0, 3);
+                        .slice(0, 6);
                     setLocalGithubData({ repos: topRepos, stats: user });
                     setLoading(p => ({ ...p, github: false }));
                 })
@@ -129,12 +129,9 @@ const Profiles = ({ githubData: propGithubData, leetcodeStats: propLeetcodeStats
                                         className="border-2 border-black p-3 hover:shadow-md transition"
                                     >
                                         <h5 className="font-bold text-sm mb-1">{repo.name}</h5>
-                                        <p className="text-xs opacity-70 mb-2 line-clamp-1">
-                                            {repo.description || 'No description'}
-                                        </p>
-                                        <div className="flex justify-between text-xs opacity-70">
-                                            <span>⭐ {repo.stargazers_count}</span>
-                                            <span>🔱 {repo.forks_count}</span>
+                                        <div className="flex items-center gap-1 text-xs opacity-70">
+                                            <FaStar className="text-yellow-500" />
+                                            <span>{repo.stargazers_count}</span>
                                         </div>
                                     </a>
                                 ))}

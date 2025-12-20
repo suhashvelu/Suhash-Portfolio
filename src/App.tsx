@@ -11,12 +11,12 @@ import Loader from './components/Loader';
 import SocialStrip from './components/SocialStrip';
 import Resume from './components/Resume';
 
-const GITHUB_USERNAME = 'suhashvelusamy';
+const GITHUB_USERNAME = 'SUHASHVELU';
 const LEETCODE_USERNAME = 'SUHASH_03';
 
 function App() {
     const [loading, setLoading] = useState(true);
-    const [githubData, setGithubData] = useState({ repos: [], stats: null });
+    const [githubData, setGithubData] = useState<any>(null);
     const [leetcodeStats, setLeetcodeStats] = useState(null);
 
     useEffect(() => {
@@ -81,7 +81,8 @@ function App() {
                 ]).then(([repos, user]) => {
                     const topRepos = repos
                         .sort((a: any, b: any) => b.stargazers_count - a.stargazers_count)
-                        .slice(0, 3);
+                        .slice(0, 6);
+
                     setGithubData({ repos: topRepos, stats: user });
                 });
 
