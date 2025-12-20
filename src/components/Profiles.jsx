@@ -3,6 +3,7 @@ import { FaGithub, FaStar } from 'react-icons/fa';
 import { SiLeetcode } from 'react-icons/si';
 import profilesData from '../data/profiles.json';
 
+
 const GITHUB_USERNAME = 'SUHASHVELU';
 const LEETCODE_USERNAME = 'SUHASH_03';
 
