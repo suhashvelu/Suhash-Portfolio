@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { FaTwitter, FaLinkedin, FaGithub, FaInstagram } from 'react-icons/fa';
+import { SiLeetcode } from 'react-icons/si';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -67,16 +68,7 @@ const Navbar = () => {
                     {/* Social Icons */}
                     <div className="hidden md:flex gap-4 text-black items-center">
                         <a
-                            href="https://x.com/Su_hash1947"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="hover:scale-110 transition-transform text-black"
-                            aria-label="Twitter"
-                        >
-                            <FaTwitter size={24} />
-                        </a>
-                        <a
-                            href="www.linkedin.com/in/suhash-velusamy"
+                            href="https://www.linkedin.com/in/suhash-velusamy"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="hover:scale-110 transition-transform text-black"
@@ -94,6 +86,15 @@ const Navbar = () => {
                             <FaGithub size={24} />
                         </a>
                         <a
+                            href="https://leetcode.com/u/SUHASH_03/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="hover:scale-110 transition-transform text-black"
+                            aria-label="LeetCode"
+                        >
+                            <SiLeetcode size={24} />
+                        </a>
+                        <a
                             href="https://www.instagram.com/suhash_velu_/?__pwa=1#"
                             target="_blank"
                             rel="noopener noreferrer"
@@ -101,6 +102,15 @@ const Navbar = () => {
                             aria-label="Instagram"
                         >
                             <FaInstagram size={24} />
+                        </a>
+                        <a
+                            href="https://x.com/Su_hash1947"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="hover:scale-110 transition-transform text-black"
+                            aria-label="Twitter"
+                        >
+                            <FaTwitter size={24} />
                         </a>
                     </div>
 
@@ -127,10 +137,11 @@ const Navbar = () => {
                                 Contact
                             </a>
                             <div className="flex justify-center gap-6 mt-4 pt-4 border-t border-gray-200">
-                                <a href="https://x.com/Su_hash1947" target="_blank" rel="noopener" className="text-black"><FaTwitter size={24} /></a>
-                                <a href="www.linkedin.com/in/suhash-velusamy" target="_blank" rel="noopener" className="text-black"><FaLinkedin size={24} /></a>
+                                <a href="https://www.linkedin.com/in/suhash-velusamy" target="_blank" rel="noopener" className="text-black"><FaLinkedin size={24} /></a>
                                 <a href="https://github.com/SUHASHVELU" target="_blank" rel="noopener" className="text-black"><FaGithub size={24} /></a>
+                                <a href="https://leetcode.com/u/SUHASH_03/" target="_blank" rel="noopener" className="text-black"><SiLeetcode size={24} /></a>
                                 <a href="https://www.instagram.com/suhash_velu_/?__pwa=1#" target="_blank" rel="noopener" className="text-black"><FaInstagram size={24} /></a>
+                                <a href="https://x.com/Su_hash1947" target="_blank" rel="noopener" className="text-black"><FaTwitter size={24} /></a>
                             </div>
                         </div>
                     </div>
