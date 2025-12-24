@@ -11,6 +11,7 @@ const Profiles = ({ githubData: propGithubData, leetcodeStats: propLeetcodeStats
     const [localGithubData, setLocalGithubData] = useState({ repos: [], stats: null });
     const [localLeetcodeStats, setLocalLeetcodeStats] = useState(null);
     const [loading, setLoading] = useState({ github: true, leetcode: true });
+    const [showAllRepos, setShowAllRepos] = useState(false);
 
     // Use props if available, otherwise local state
     const githubData = propGithubData || localGithubData;
@@ -24,17 +25,30 @@ const Profiles = ({ githubData: propGithubData, leetcodeStats: propLeetcodeStats
         // Only fetch if props are NOT provided
         if (!propGithubData) {
             Promise.all([
-                fetch(`https://api.github.com/users/${GITHUB_USERNAME}/repos?per_page=100`).then(r => r.json()),
-                fetch(`https://api.github.com/users/${GITHUB_USERNAME}`).then(r => r.json())
+                fetch(`https://api.github.com/users/${GITHUB_USERNAME}/repos?per_page=100`),
+                fetch(`https://api.github.com/users/${GITHUB_USERNAME}`)
             ])
-                .then(([repos, user]) => {
+                .then(async ([reposRes, userRes]) => {
+                    if (!reposRes.ok) throw new Error(`GitHub Repos API Error: ${reposRes.status}`);
+                    if (!userRes.ok) throw new Error(`GitHub User API Error: ${userRes.status}`);
+
+                    const repos = await reposRes.json();
+                    const user = await userRes.json();
+
+                    if (!Array.isArray(repos)) {
+                        console.error("GitHub Repos response is not an array:", repos);
+                        throw new Error("Invalid repos data format");
+                    }
+
                     const topRepos = repos
-                        .sort((a, b) => b.stargazers_count - a.stargazers_count)
-                        .slice(0, 6);
+                        .sort((a, b) => b.stargazers_count - a.stargazers_count);
                     setLocalGithubData({ repos: topRepos, stats: user });
                     setLoading(p => ({ ...p, github: false }));
                 })
-                .catch(() => setLoading(p => ({ ...p, github: false })));
+                .catch((err) => {
+                    console.error("Failed to fetch GitHub data:", err);
+                    setLoading(p => ({ ...p, github: false }));
+                });
         }
 
         if (!propLeetcodeStats) {
@@ -64,7 +78,7 @@ const Profiles = ({ githubData: propGithubData, leetcodeStats: propLeetcodeStats
                     {profilesData.title.toUpperCase()}
                 </h2>
 
-                <div className="grid lg:grid-cols-2 gap-10">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
                     {/* ================= GitHub ================= */}
                     <div className="border-[3px] border-black bg-white">
                         <div className="border-b-[3px] border-black p-4">
@@ -92,7 +106,7 @@ const Profiles = ({ githubData: propGithubData, leetcodeStats: propLeetcodeStats
                             </div>
 
                             {!isLoading.github && githubData.stats && (
-                                <div className="grid grid-cols-3 gap-3 mt-3">
+                                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-3">
                                     {[
                                         ['Repos', githubData.stats.public_repos],
                                         ['Followers', githubData.stats.followers],
@@ -120,8 +134,8 @@ const Profiles = ({ githubData: propGithubData, leetcodeStats: propLeetcodeStats
                                 Top Repositories
                             </h4>
 
-                            <div className="grid grid-cols-3 gap-3">
-                                {githubData.repos.map(repo => (
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+                                {(showAllRepos ? githubData.repos : githubData.repos.slice(0, 6)).map(repo => (
                                     <a
                                         key={repo.id}
                                         href={repo.html_url}
@@ -137,6 +151,15 @@ const Profiles = ({ githubData: propGithubData, leetcodeStats: propLeetcodeStats
                                     </a>
                                 ))}
                             </div>
+
+                            {githubData.repos.length > 6 && (
+                                <button
+                                    onClick={() => setShowAllRepos(!showAllRepos)}
+                                    className="w-full mt-4 border-2 border-black px-4 py-2 text-sm font-bold uppercase tracking-wider hover:bg-black hover:text-white transition"
+                                >
+                                    {showAllRepos ? 'Show Less' : 'View All →'}
+                                </button>
+                            )}
                         </div>
                     </div>
 
@@ -168,7 +191,7 @@ const Profiles = ({ githubData: propGithubData, leetcodeStats: propLeetcodeStats
 
                             {!isLoading.leetcode && leetcodeStats && (
                                 <>
-                                    <div className="grid grid-cols-2 gap-3 mt-3">
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-3">
                                         <div className="border-2 border-black p-3 text-center">
                                             <p className="text-3xl font-bold">{leetcodeStats.totalSolved}</p>
                                             <p className="text-xs opacity-60 uppercase">Total Solved</p>

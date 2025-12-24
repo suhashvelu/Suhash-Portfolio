@@ -1,9 +1,26 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import projectsData from '../data/projects.json';
 
 const Projects = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
-    const itemsPerView = 3;
+    const [itemsPerView, setItemsPerView] = useState(3);
+
+    useEffect(() => {
+        const handleResize = () => {
+            if (window.innerWidth < 768) {
+                setItemsPerView(1);
+            } else if (window.innerWidth < 1024) {
+                setItemsPerView(2);
+            } else {
+                setItemsPerView(3);
+            }
+        };
+
+        handleResize(); // Set initial value
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
     const maxIndex = Math.max(0, projectsData.projects.length - itemsPerView);
 
     const handlePrev = () => {
@@ -51,15 +68,16 @@ const Projects = () => {
                     {/* Slides Container */}
                     <div className="overflow-hidden">
                         <div
-                            className="flex transition-transform duration-500 ease-out gap-8"
+                            className={`flex transition-transform duration-500 ease-out gap-8`}
                             style={{
-                                transform: `translateX(-${currentIndex * (100 / itemsPerView + 2.67)}%)`
+                                transform: `translateX(-${currentIndex * (100 / itemsPerView + (itemsPerView === 1 ? 0 : 2.67 / itemsPerView))}%)`
                             }}
                         >
                             {projectsData.projects.map((project) => (
                                 <div
                                     key={project.id}
-                                    className="flex-shrink-0 w-full md:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.33rem)]"
+                                    className={`flex-shrink-0 w-full ${itemsPerView === 2 ? 'md:w-[calc(50%-1rem)]' : ''} ${itemsPerView === 3 ? 'lg:w-[calc(33.333%-1.33rem)]' : ''}`}
+                                    style={{ width: itemsPerView === 1 ? '100%' : undefined }}
                                 >
                                     <div className="border-4 border-black p-3 bg-white hover:shadow-2xl transition-shadow duration-300 h-full">
                                         {/* Inner border */}

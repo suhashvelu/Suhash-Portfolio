@@ -10,7 +10,7 @@ const Footer = () => {
                 <div className="h-[2px] w-full bg-black"></div>
             </div>
 
-            <div className="w-full flex items-center justify-between">
+            <div className="w-full flex flex-col sm:flex-row items-center justify-between gap-4">
                 {/* Colored Dots */}
                 <div className="flex items-center gap-3">
                     <div className="w-5 h-5 rounded-full bg-[#3b82f6]"></div> {/* Blue */}
