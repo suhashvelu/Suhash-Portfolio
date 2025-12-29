@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import jwt from 'jsonwebtoken';
+import nodemailer from 'nodemailer';
 
 dotenv.config();
 
@@ -17,10 +18,7 @@ app.use(express.json());
 
 // MongoDB connection
 mongoose
-    .connect(MONGO_URI, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-    })
+    .connect(MONGO_URI)
     .then(() => {
         console.log('MongoDB connected');
     })
@@ -73,6 +71,7 @@ app.post('/api/contact', async (req, res) => {
             return res.status(400).json({ error: 'Missing required fields' });
         }
 
+        // 1. Save to Database (existing logic)
         let user = await ContactUser.findOne({ email });
 
         if (!user) {
@@ -88,8 +87,45 @@ app.post('/api/contact', async (req, res) => {
             console.log('Updating existing user/submission for:', email);
             user.name = name;
             user.message = message;
-            // Optionally refresh token here if needed, keeping simple for now
             await user.save();
+        }
+
+        // 2. Send Email Notification
+        // Check if email credentials are set
+        if (process.env.EMAIL_USER && process.env.EMAIL_PASS) {
+            const transporter = nodemailer.createTransport({
+                service: 'gmail',
+                auth: {
+                    user: process.env.EMAIL_USER,
+                    pass: process.env.EMAIL_PASS,
+                },
+            });
+
+            const mailOptions = {
+                from: process.env.EMAIL_USER,
+                to: 'suhashvelu03@gmail.com', // The admin email
+                subject: `New Portfolio Contact from ${name}`,
+                text: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
+                html: `
+                    <h3>New Contact Form Submission</h3>
+                    <p><strong>Name:</strong> ${name}</p>
+                    <p><strong>Email:</strong> ${email}</p>
+                    <p><strong>Message:</strong></p>
+                    <blockquote style="background: #f9f9f9; padding: 10px; border-left: 5px solid #ccc;">
+                        ${message.replace(/\n/g, '<br>')}
+                    </blockquote>
+                `,
+            };
+
+            try {
+                await transporter.sendMail(mailOptions);
+                console.log('Email sent successfully');
+            } catch (emailErr) {
+                console.error('Error sending email:', emailErr);
+                // Don't fail the request if email fails, but log it
+            }
+        } else {
+            console.warn('EMAIL_USER or EMAIL_PASS not set within .env - skipping email send.');
         }
 
         console.log('Submission saved successfully.');

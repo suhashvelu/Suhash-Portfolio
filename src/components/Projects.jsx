@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import projectsData from '../data/projects.json';
+import { FaGithub, FaExternalLinkAlt, FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 const Projects = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -34,41 +35,42 @@ const Projects = () => {
     return (
         <section
             id="projects"
-            className="w-full py-16 px-6 lg:px-12 bg-white text-black border-t-2 border-black flex justify-center overflow-hidden"
+            className="w-full py-20 px-6 lg:px-12 bg-white text-black border-t border-neutral-200 overflow-hidden"
         >
-            <div className="max-w-7xl mx-auto w-full">
-                <h2
-                    className="text-4xl md:text-5xl font-bold mb-12 text-center"
-                    style={{ fontFamily: "'Melodrama', serif" }}
-                >
-                    {projectsData.title.toUpperCase()}
-                </h2>
+            <div className="max-w-7xl mx-auto w-full relative">
+                {/* Header */}
+                <div className="flex flex-col items-center justify-center mb-16 text-center">
+                    <h2 className="text-5xl md:text-7xl font-bold font-['Melodrama'] mb-6 tracking-tight">
+                        {projectsData.title}
+                    </h2>
+                    <div className="h-1 w-24 bg-black rounded-full"></div>
+                </div>
 
                 {/* Carousel Container */}
-                <div className="relative px-16">
-                    {/* Navigation Arrows - Positioned outside */}
+                <div className="relative px-4 md:px-16">
+                    {/* Navigation Arrows */}
                     <button
                         onClick={handlePrev}
                         disabled={currentIndex === 0}
-                        className="absolute -left-2 top-1/2 -translate-y-1/2 z-10 w-12 h-12 border-2 border-black bg-white hover:bg-black hover:text-white transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed"
+                        className="absolute left-0 md:-left-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 md:w-16 md:h-16 flex items-center justify-center border border-black/10 bg-white rounded-full text-black hover:bg-black hover:text-white hover:border-black transition-all duration-300 disabled:opacity-0 disabled:cursor-not-allowed shadow-lg hover:shadow-xl group"
                         aria-label="Previous"
                     >
-                        ←
+                        <FaChevronLeft className="text-xl group-hover:-translate-x-1 transition-transform duration-300" />
                     </button>
 
                     <button
                         onClick={handleNext}
                         disabled={currentIndex >= maxIndex}
-                        className="absolute -right-2 top-1/2 -translate-y-1/2 z-10 w-12 h-12 border-2 border-black bg-white hover:bg-black hover:text-white transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed"
+                        className="absolute right-0 md:-right-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 md:w-16 md:h-16 flex items-center justify-center border border-black/10 bg-white rounded-full text-black hover:bg-black hover:text-white hover:border-black transition-all duration-300 disabled:opacity-0 disabled:cursor-not-allowed shadow-lg hover:shadow-xl group"
                         aria-label="Next"
                     >
-                        →
+                        <FaChevronRight className="text-xl group-hover:translate-x-1 transition-transform duration-300" />
                     </button>
 
-                    {/* Slides Container */}
-                    <div className="overflow-hidden">
+                    {/* Slides Window */}
+                    <div className="overflow-hidden py-10 -my-10">
                         <div
-                            className={`flex transition-transform duration-500 ease-out gap-8`}
+                            className="flex transition-transform duration-700 cubic-bezier(0.25, 1, 0.5, 1) gap-8"
                             style={{
                                 transform: `translateX(-${currentIndex * (100 / itemsPerView + (itemsPerView === 1 ? 0 : 2.67 / itemsPerView))}%)`
                             }}
@@ -79,88 +81,67 @@ const Projects = () => {
                                     className={`flex-shrink-0 w-full ${itemsPerView === 2 ? 'md:w-[calc(50%-1rem)]' : ''} ${itemsPerView === 3 ? 'lg:w-[calc(33.333%-1.33rem)]' : ''}`}
                                     style={{ width: itemsPerView === 1 ? '100%' : undefined }}
                                 >
-                                    <div className="border-4 border-black p-3 bg-white hover:shadow-2xl transition-shadow duration-300 h-full">
-                                        {/* Inner border */}
-                                        <div className="border-2 border-black h-full flex flex-col">
-                                            {/* Image Placeholder */}
-                                            <div className="aspect-[4/3] bg-gray-100 border-b-2 border-black flex items-center justify-center overflow-hidden relative group">
-                                                {project.image ? (
-                                                    <img
-                                                        src={project.image}
-                                                        alt={project.title}
-                                                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                                                    />
-                                                ) : (
-                                                    <div className="text-center p-8">
-                                                        <div
-                                                            className="text-9xl font-bold opacity-10"
-                                                            style={{ fontFamily: "'Clash Display', sans-serif" }}
-                                                        >
-                                                            {project.id}
-                                                        </div>
-                                                    </div>
-                                                )}
+                                    <div className="group h-full bg-white border border-neutral-200 hover:border-black/50 transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 flex flex-col rounded-xl overflow-hidden relative">
+
+                                        {/* Content Area */}
+                                        <div className="p-8 flex flex-col flex-grow relative h-full">
+                                            <div className="mb-6">
+                                                <span className="text-xs font-bold uppercase tracking-widest text-neutral-500 mb-3 block font-['Clash_Display']">
+                                                    {project.category}
+                                                </span>
+                                                <h3 className="text-3xl font-bold leading-tight font-['Clash_Display'] group-hover:text-black/80 transition-colors mb-2">
+                                                    {project.title}
+                                                </h3>
+                                                <div className="h-0.5 w-12 bg-black/10 group-hover:w-full transition-all duration-500 ease-out"></div>
                                             </div>
 
-                                            {/* Project Info */}
-                                            <div className="p-6 bg-white flex-grow flex flex-col justify-between h-[300px]">
-                                                <div>
-                                                    <h3
-                                                        className="text-xl font-bold mb-3 leading-tight line-clamp-2"
-                                                        style={{ fontFamily: "'Clash Display', sans-serif" }}
-                                                    >
-                                                        {project.title}
-                                                    </h3>
-                                                    <p className="text-sm opacity-80 mb-4 line-clamp-3">
-                                                        {project.description}
-                                                    </p>
+                                            <p className="text-neutral-600 text-sm leading-relaxed mb-8 line-clamp-4 flex-grow">
+                                                {project.description}
+                                            </p>
 
-                                                    {project.techStack && (
-                                                        <div className="mb-4">
-                                                            <p className="text-xs font-bold uppercase tracking-wider mb-1">Tech Stack:</p>
-                                                            <p className="text-xs opacity-70 italic line-clamp-2">{project.techStack}</p>
-                                                        </div>
-                                                    )}
-                                                </div>
+                                            <div className="mt-auto flex flex-col gap-6">
+                                                {project.techStack && (
+                                                    <div className="flex flex-wrap gap-2">
+                                                        {project.techStack.split(',').map((tech, index) => (
+                                                            <span
+                                                                key={index}
+                                                                className="text-[10px] font-semibold uppercase tracking-wider px-2 py-1 bg-neutral-100 rounded-md text-neutral-600 border border-neutral-200"
+                                                            >
+                                                                {tech.trim()}
+                                                            </span>
+                                                        ))}
+                                                    </div>
+                                                )}
 
-                                                <div className="flex flex-col gap-4 mt-auto">
-                                                    <div className="flex items-center justify-between">
-                                                        <p
-                                                            className="text-xs uppercase tracking-wider opacity-60"
-                                                            style={{ fontFamily: "'Clash Display', sans-serif" }}
+                                                <div className="flex gap-4 pt-4 border-t border-neutral-100">
+                                                    {project.githubLink && project.githubLink !== '#' && (
+                                                        <a
+                                                            href={project.githubLink}
+                                                            target="_blank"
+                                                            rel="noopener noreferrer"
+                                                            className="flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-black hover:opacity-70 transition-opacity"
                                                         >
-                                                            {project.category}
-                                                        </p>
-                                                    </div>
-
-                                                    <div className="flex gap-3">
-                                                        {project.githubLink && project.githubLink !== '#' && (
-                                                            <a
-                                                                href={project.githubLink}
-                                                                target="_blank"
-                                                                rel="noopener noreferrer"
-                                                                className="flex-1 bg-black text-white text-center py-2 text-sm font-bold uppercase tracking-wider hover:bg-black/80 transition-colors"
-                                                            >
-                                                                GitHub
-                                                            </a>
-                                                        )}
-                                                        {project.demoLink && project.demoLink !== '#' && (
-                                                            <a
-                                                                href={project.demoLink}
-                                                                target="_blank"
-                                                                rel="noopener noreferrer"
-                                                                className="flex-1 border-2 border-black text-black text-center py-2 text-sm font-bold uppercase tracking-wider hover:bg-black hover:text-white transition-colors"
-                                                            >
-                                                                Demo
-                                                            </a>
-                                                        )}
-                                                    </div>
+                                                            <FaGithub size={16} />
+                                                            <span>Code</span>
+                                                        </a>
+                                                    )}
+                                                    {project.demoLink && project.demoLink !== '#' && (
+                                                        <a
+                                                            href={project.demoLink}
+                                                            target="_blank"
+                                                            rel="noopener noreferrer"
+                                                            className="flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-black hover:opacity-70 transition-opacity"
+                                                        >
+                                                            <FaExternalLinkAlt size={14} />
+                                                            <span>Live Demo</span>
+                                                        </a>
+                                                    )}
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            ))}
+                              ))}
                         </div>
                     </div>
                 </div>
